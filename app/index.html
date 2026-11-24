@@ -66,16 +66,37 @@ footer a{color:#4aa7ea;text-decoration:none}
 .agree{margin:6px 0;padding-left:20px}
 .agree li{margin:8px 0}
 .blank{border-bottom:1px solid #f39a3d;min-width:80px;display:inline-block}
+.login-overlay{position:fixed;inset:0;background:#11161a;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-card{width:100%;max-width:420px;background:#171e23;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:26px 22px;text-align:center}
+.login-card h2{margin:4px 0 2px}
+.login-card .tagline{margin:6px 0 14px}
+.login-error{color:#ff9a8a;font-size:15px;min-height:22px;margin:8px 0 0}
 </style>
 </head>
 <body>
+<div class="login-overlay" id="loginOverlay">
+<div class="login-card">
+<p class="wordmark" style="font-size:34px">Cole's <span class="blue">Appliance</span> Repair</p>
+<h2>Owner Login</h2>
+<p class="tagline">Your business, behind your login.</p>
+<form onsubmit="doLogin();return false;">
+<label style="text-align:left">Username</label>
+<input id="loginUser" autocomplete="username" placeholder="Username">
+<label style="text-align:left">Password</label>
+<input id="loginPass" type="password" autocomplete="current-password" placeholder="Password">
+<p class="login-error" id="loginError"></p>
+<button class="btn" type="submit" style="width:100%">Sign in</button>
+</form>
+<p class="small" style="margin-top:14px">Only you can open this. Everything you save here stays on your phone.</p>
+</div>
+</div>
 <div class="app">
 <header>
 <p class="wordmark">Cole's <span class="blue">Appliance</span> Repair</p>
 <p class="sub">Girard, Illinois &bull; Family Owned Since 1967</p>
 <p class="tagline">Great service is about more than fixing an appliance.</p>
 </header>
-<p class="hint">On your iPhone: tap Share, then &ldquo;Add to Home Screen&rdquo; to keep Cole's on your home screen. Everything you save here stays on your phone.</p>
+<p class="hint">On your Android: tap the menu (&#8942;), then &ldquo;Add to Home screen&rdquo; to keep Cole's on your home screen. Everything you save here stays on your phone.</p>
 <main>
 
 <!-- JOBS -->
@@ -280,7 +301,8 @@ footer a{color:#4aa7ea;text-decoration:none}
 <footer>
 Tyler Cole (217) 685-1735<br>
 <a href="mailto:colesappliancerepair@gmail.com">colesappliancerepair@gmail.com</a> &bull; <a href="https://colesappliancerepairs.com">colesappliancerepairs.com</a><br>
-Family-Owned &bull; Quality Care &bull; EPA Certified &bull; HVAC/R Certified
+Family-Owned &bull; Quality Care &bull; EPA Certified &bull; HVAC/R Certified<br>
+<button class="btn btn-ghost btn-small" onclick="doLogout()" style="margin-top:10px">Sign out</button>
 </footer>
 </div>
 
@@ -292,6 +314,38 @@ Family-Owned &bull; Quality Care &bull; EPA Certified &bull; HVAC/R Certified
 </nav>
 
 <script>
+var LOGIN_USER = "Cole.Tyler.W";
+var LOGIN_HASH = "b5fc76b1a3e9e0c07c9b462ff3e2b065d56d74bde4b74c4a90523048c50fff57";
+var AUTH_KEY = "colesAuthV1";
+async function sha256hex(str){
+var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,"0"); }).join("");
+}
+async function doLogin(){
+var u = document.getElementById("loginUser").value.trim();
+var p = document.getElementById("loginPass").value;
+var err = document.getElementById("loginError");
+if(!window.crypto || !crypto.subtle){ err.textContent = "Please open this from the website link, not a downloaded file."; return; }
+var h = await sha256hex(p);
+if(u === LOGIN_USER && h === LOGIN_HASH){
+localStorage.setItem(AUTH_KEY, "1");
+document.getElementById("loginOverlay").style.display = "none";
+document.getElementById("loginPass").value = "";
+err.textContent = "";
+} else {
+err.textContent = "Wrong username or password. Try again.";
+}
+}
+function doLogout(){
+localStorage.removeItem(AUTH_KEY);
+document.getElementById("loginOverlay").style.display = "flex";
+document.getElementById("loginUser").value = "";
+document.getElementById("loginPass").value = "";
+document.getElementById("loginError").textContent = "";
+}
+if(localStorage.getItem(AUTH_KEY) === "1"){
+document.getElementById("loginOverlay").style.display = "none";
+}
 var KEY = "colesAppV1";
 var uid = function(){ return "id" + Date.now().toString(36) + Math.floor(Math.random()*999); };
 
