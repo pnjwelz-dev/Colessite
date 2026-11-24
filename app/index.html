@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cole's Office">
+<title>Cole's Office — Cole's Appliance Repair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Yellowtail&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#11161a;color:#f7f8f8;font-family:"DM Sans",Arial,sans-serif;font-size:17px;line-height:1.45}
+.app{max-width:640px;margin:0 auto;padding:0 0 96px}
+header{text-align:center;padding:22px 16px 10px;border-bottom:1px solid rgba(255,255,255,.12)}
+.wordmark{font-family:"Barlow Condensed",sans-serif;font-size:44px;line-height:1;font-weight:700;letter-spacing:.5px;color:#f7f8f8;margin:0;text-transform:uppercase}
+.wordmark .blue{color:#4aa7ea}
+.sub{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#c7ced3;margin:8px 0 0}
+.tagline{font-family:"Yellowtail",cursive;font-size:22px;color:#f39a3d;margin:10px 0 0}
+.hint{font-size:14px;color:#c7ced3;text-align:center;padding:8px 16px 0}
+main{padding:6px 12px 0}
+.tab{display:none}
+.tab.active{display:block}
+h2{font-family:"Barlow Condensed",sans-serif;font-size:32px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#f39a3d;margin:14px 4px 4px}
+.card{background:#171e23;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px;margin:12px 0}
+.card h3{margin:0 0 8px;font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:600;letter-spacing:.5px;color:#f7f8f8}
+label{display:block;font-size:15px;color:#c7ced3;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #3a4750;background:#222c33;color:#f7f8f8;font-family:inherit;font-size:17px}
+textarea{min-height:70px;resize:vertical}
+input[type=checkbox]{width:22px;height:22px;accent-color:#f39a3d;flex:none}
+input[type=date],input[type=time]{color-scheme:dark}
+.btn{display:inline-block;background:#f39a3d;color:#141414;border:none;padding:12px 20px;border-radius:999px;font-family:inherit;font-weight:700;font-size:17px;cursor:pointer;margin-top:10px}
+.btn-ghost{background:transparent;border:1px solid #f39a3d;color:#f39a3d}
+.btn-blue{background:transparent;border:1px solid #4aa7ea;color:#4aa7ea}
+.btn-small{padding:8px 14px;font-size:15px;margin-top:0}
+.row{display:flex;gap:10px;align-items:flex-start}
+.row>*{flex:1}
+.item{display:flex;gap:10px;align-items:flex-start;padding:12px 4px;border-bottom:1px solid #2c3843}
+.item:last-child{border-bottom:none}
+.item .body{flex:1;min-width:0}
+.item .title{font-weight:700;font-size:18px}
+.item .meta{font-size:15px;color:#c7ced3}
+.item .meta b{color:#f7f8f8}
+.item .meta a{color:#4aa7ea}
+.done .title,.done .meta{text-decoration:line-through;opacity:.55}
+.pill{display:inline-block;font-size:12px;letter-spacing:1px;text-transform:uppercase;border:1px solid #f39a3d;color:#f39a3d;border-radius:999px;padding:2px 10px;margin-left:6px}
+.pill.blue{border-color:#4aa7ea;color:#4aa7ea}
+.pill.green{border-color:#8fbf7f;color:#8fbf7f}
+.check{display:flex;gap:12px;align-items:center;padding:11px 2px;border-bottom:1px solid #2c3843;cursor:pointer}
+.check span{flex:1}
+.check input:checked+span{text-decoration:line-through;opacity:.55}
+.room{font-size:19px;font-weight:700;color:#f7f8f8;margin:16px 0 2px}
+.money{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #2c3843}
+.money.total{font-weight:700;font-size:20px;color:#f39a3d;border-bottom:none}
+.tabbar{position:fixed;left:0;right:0;bottom:0;background:#0d1216;border-top:1px solid rgba(255,255,255,.12);display:flex;z-index:10}
+.tabbar button{flex:1;background:none;border:none;color:#8a97a0;font-family:inherit;font-size:14px;font-weight:700;padding:13px 2px 16px;cursor:pointer}
+.tabbar button.active{color:#f39a3d}
+.tabbar button .ico{display:block;font-size:20px;line-height:1.1}
+.small{font-size:14px;color:#aeb9c2}
+.doclink{display:block;padding:13px 14px;margin:9px 0;border:1px solid rgba(243,154,61,.55);border-radius:12px;color:#f7f8f8;text-decoration:none;font-size:18px;line-height:1.35}
+.doclink b{color:#f39a3d}
+.doclink .small{display:block;margin-top:2px}
+.center{text-align:center}
+footer{padding:18px;text-align:center;font-size:14px;color:#8a97a0}
+footer a{color:#4aa7ea;text-decoration:none}
+.agree{margin:6px 0;padding-left:20px}
+.agree li{margin:8px 0}
+.blank{border-bottom:1px solid #f39a3d;min-width:80px;display:inline-block}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<p class="wordmark">Cole's <span class="blue">Appliance</span> Repair</p>
+<p class="sub">Girard, Illinois &bull; Family Owned Since 1967</p>
+<p class="tagline">Great service is about more than fixing an appliance.</p>
+</header>
+<p class="hint">On your iPhone: tap Share, then &ldquo;Add to Home Screen&rdquo; to keep Cole's on your home screen. Everything you save here stays on your phone.</p>
+<main>
+
+<!-- JOBS -->
+<section class="tab active" id="tab-jobs">
+<h2>Repair Calls</h2>
+<div class="card">
+<h3>Upcoming calls</h3>
+<div id="callList"></div>
+</div>
+<div class="card">
+<h3>Add a repair call</h3>
+<label>Customer</label>
+<input id="callCustomer" list="customerNames" placeholder="Customer name">
+<datalist id="customerNames"></datalist>
+<label>Phone</label>
+<input id="callPhone" type="tel" placeholder="(217) 555-0100">
+<div class="row">
+<div><label>Date</label><input id="callDate" type="date"></div>
+<div><label>Time</label><input id="callTime" type="time" value="09:00"></div>
+</div>
+<label>Address</label>
+<input id="callAddress" placeholder="Street, town">
+<label>Appliance type</label>
+<select id="callAppliance">
+<option value="">— pick one —</option>
+<option>Refrigerator</option>
+<option>Freezer</option>
+<option>Washer</option>
+<option>Dryer</option>
+<option>Dishwasher</option>
+<option>Range / Oven</option>
+<option>Microwave</option>
+<option>Heating / Cooling</option>
+<option>Other</option>
+</select>
+<label>Brand</label>
+<input id="callBrand" placeholder="e.g. Whirlpool, GE, Samsung">
+<label>Problem</label>
+<textarea id="callProblem" placeholder="What is it doing — or not doing?"></textarea>
+<label>Notes</label>
+<textarea id="callNotes" placeholder="Anything to remember for this call"></textarea>
+<button class="btn" onclick="addCall()">Add repair call</button>
+</div>
+<div class="card">
+<h3>Customers</h3>
+<div id="customerList"></div>
+</div>
+</section>
+
+<!-- INVOICE -->
+<section class="tab" id="tab-invoice">
+<h2>Invoice</h2>
+<div class="card">
+<h3>Your rates</h3>
+<p class="small">Set these once — they fill in on every new invoice. Nothing is pre-filled; these are Tyler's rates to set.</p>
+<div class="row">
+<div><label>Service call fee ($)</label><input id="rateService" type="number" min="0" step="0.01" placeholder="Set your rate"></div>
+<div><label>Labor rate per hour ($)</label><input id="rateLabor" type="number" min="0" step="0.01" placeholder="Set your rate"></div>
+</div>
+<button class="btn" onclick="saveRates()">Save rates</button>
+</div>
+<div class="card">
+<h3>New invoice</h3>
+<label>Customer</label>
+<input id="invCustomer" list="customerNames" placeholder="Customer name">
+<div class="row">
+<div><label>Date</label><input id="invDate" type="date"></div>
+<div><label>Service call fee ($)</label><input id="invService" type="number" min="0" step="0.01" placeholder="0.00"></div>
+</div>
+<div class="row">
+<div><label>Labor hours</label><input id="invHours" type="number" min="0" step="0.25" placeholder="0"></div>
+<div><label>Labor rate ($/hr)</label><input id="invRate" type="number" min="0" step="0.01" placeholder="0.00"></div>
+</div>
+<label>Parts cost ($)</label>
+<input id="invParts" type="number" min="0" step="0.01" placeholder="0.00">
+<label>Work done</label>
+<textarea id="invWork" placeholder="What was repaired or replaced"></textarea>
+<label>Amount paid ($)</label>
+<input id="invPaid" type="number" min="0" step="0.01" placeholder="0.00">
+<div id="invPreview" style="margin-top:12px"></div>
+<button class="btn" onclick="saveInvoice()">Save invoice</button>
+</div>
+<div class="card">
+<h3>Saved invoices</h3>
+<div id="invoiceList"></div>
+</div>
+<div class="card">
+<h3>Back up my data</h3>
+<p class="small">Your repair calls, invoices, parts and forms live on this phone. Tap below to save a copy you can keep in your Files or send to yourself.</p>
+<button class="btn btn-ghost" onclick="exportData()">Download a backup copy</button>
+</div>
+</section>
+
+<!-- PARTS -->
+<section class="tab" id="tab-parts">
+<h2>Parts &amp; Suppliers</h2>
+<div class="card">
+<h3>Parts suppliers</h3>
+<p class="small">Well-known national suppliers — sites checked Nov 2026. Add the local suppliers you use. No phone numbers listed here; order through each site.</p>
+<input id="supSearch" placeholder="Search suppliers…" oninput="renderSuppliers()">
+<div id="supList"></div>
+</div>
+<div class="card">
+<h3>Parts to order</h3>
+<div id="partList"></div>
+<label>Part needed</label>
+<input id="partName" placeholder="e.g. Dryer heating element">
+<label>Appliance / model</label>
+<input id="partModel" placeholder="e.g. Whirlpool WED4815EW1">
+<label>Supplier</label>
+<select id="partSupplier">
+<option value="">— pick one —</option>
+<option>Marcone Appliance Parts</option>
+<option>RepairClinic</option>
+<option>AppliancePartsPros</option>
+<option>PartSelect</option>
+<option>Reliable Parts</option>
+<option>Encompass</option>
+<option>Sears PartsDirect</option>
+<option>Other / local</option>
+</select>
+<button class="btn" onclick="addPart()">Add part</button>
+</div>
+</section>
+
+<!-- FORMS -->
+<section class="tab" id="tab-forms">
+<h2>Forms</h2>
+<div class="card">
+<h3>Service call intake</h3>
+<label>For this call</label>
+<select id="intakeCall" onchange="loadIntake()"></select>
+<label>Customer</label>
+<input id="inCustomer">
+<div class="row">
+<div><label>Phone</label><input id="inPhone" type="tel"></div>
+<div><label>Date</label><input id="inDate" type="date"></div>
+</div>
+<label>Address</label>
+<input id="inAddress">
+<div class="row">
+<div><label>Appliance type</label><input id="inAppliance"></div>
+<div><label>Brand</label><input id="inBrand"></div>
+</div>
+<div class="row">
+<div><label>Model #</label><input id="inModel" placeholder="Model number"></div>
+<div><label>Serial #</label><input id="inSerial" placeholder="Serial number"></div>
+</div>
+<label>Problem</label>
+<textarea id="inProblem"></textarea>
+<label>Under warranty?</label>
+<select id="inWarranty">
+<option value="">— pick one —</option>
+<option>Yes</option>
+<option>No</option>
+<option>Not sure</option>
+</select>
+<label>Home access</label>
+<select id="inAccess">
+<option value="">— pick one —</option>
+<option>I will be home</option>
+<option>Key provided</option>
+<option>Lockbox / code</option>
+<option>Other</option>
+</select>
+<label>Photos taken?</label>
+<select id="inPhotos">
+<option value="">— pick one —</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+<label>Notes</label>
+<textarea id="inNotes"></textarea>
+<button class="btn" onclick="saveIntake()">Save intake form</button>
+</div>
+
+<div class="card">
+<h3>On-the-job checklist</h3>
+<label>For this call</label>
+<select id="checkCall" onchange="renderChecklist()"></select>
+<div id="checklistBody"></div>
+<button class="btn btn-ghost" onclick="clearChecklist()">Clear all checks</button>
+</div>
+
+<div class="card">
+<h3>Service agreement — outline</h3>
+<p class="small">Plain-language outline for the customer. This is <b>not</b> a legal document — fill in your own terms, and have a local pro look it over if you want it airtight.</p>
+<ul class="agree">
+<li>This visit covers diagnosis of the problem and the repair listed on the invoice.</li>
+<li>Service call fee: <span class="blank">&nbsp;</span> (your rate — set it on the Invoice tab).</li>
+<li>Labor is charged at your hourly rate for the time on the job.</li>
+<li>Parts are charged at the price shown on the invoice.</li>
+<li>Warranty on parts and labor: <span class="blank">&nbsp;</span> (fill in your terms — how long, and what it covers).</li>
+<li>Payment is due when the work is finished.</li>
+<li>If a part has to be ordered, the return visit is scheduled once the part arrives.</li>
+<li>The customer is responsible for clearing access to the appliance before the visit.</li>
+</ul>
+</div>
+</section>
+
+</main>
+<footer>
+Tyler Cole (217) 685-1735<br>
+<a href="mailto:colesappliancerepair@gmail.com">colesappliancerepair@gmail.com</a> &bull; <a href="https://colesappliancerepairs.com">colesappliancerepairs.com</a><br>
+Family-Owned &bull; Quality Care &bull; EPA Certified &bull; HVAC/R Certified
+</footer>
+</div>
+
+<nav class="tabbar">
+<button class="active" onclick="showTab('jobs',this)"><span class="ico">&#128296;</span>Jobs</button>
+<button onclick="showTab('invoice',this)"><span class="ico">&#36;</span>Invoice</button>
+<button onclick="showTab('parts',this)"><span class="ico">&#128230;</span>Parts</button>
+<button onclick="showTab('forms',this)"><span class="ico">&#128196;</span>Forms</button>
+</nav>
+
+<script>
+var KEY = "colesAppV1";
+var uid = function(){ return "id" + Date.now().toString(36) + Math.floor(Math.random()*999); };
+
+var SUPPLIERS = [
+{n:"Marcone Appliance Parts", p:"Largest US appliance parts distributor — OEM parts for most major brands", w:"marcone.com"},
+{n:"RepairClinic", p:"OEM parts, repair-help videos and part diagrams", w:"repairclinic.com"},
+{n:"AppliancePartsPros", p:"OEM parts by model number, repair help, fast shipping", w:"appliancepartspros.com"},
+{n:"PartSelect", p:"OEM parts by model number, repair guides", w:"partselect.com"},
+{n:"Reliable Parts", p:"Parts distributor — OEM parts, tools and accessories", w:"reliableparts.com"},
+{n:"Encompass Supply Chain Solutions", p:"Parts distributor — OEM parts for many brands", w:"encompass.com"},
+{n:"Sears PartsDirect", p:"Sears / Kenmore OEM parts", w:"searspartsdirect.com"}
+];
+
+var JOB_CHECKS = ["Diagnose the problem","Quote approved by customer","Part ordered","Part installed","Test run — appliance working","Cleaned up the work area","Payment collected","Showed the customer how it works"];
+
+function seed(){
+return {
+calls:[],
+rates:{service:"", labor:""},
+invoices:[],
+parts:[],
+intake:{},
+checks:{}
+};
+}
+var state;
+try { state = JSON.parse(localStorage.getItem(KEY)) || seed(); }
+catch(e){ state = seed(); }
+if(!state.calls) state = seed();
+if(!state.rates) state.rates = {service:"", labor:""};
+if(!state.parts) state.parts = [];
+if(!state.intake) state.intake = {};
+if(!state.checks) state.checks = {};
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+function money(n){ return "$" + (Math.round(n*100)/100).toFixed(2); }
+function fmtDate(d){
+if(!d) return "";
+var p = d.split("-"); if(p.length!==3) return d;
+var dt = new Date(+p[0], +p[1]-1, +p[2]);
+return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dt.getDay()] + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getMonth()] + " " + (+p[2]) + ", " + p[0];
+}
+function fmtTime(t){
+if(!t) return "";
+var p = t.split(":"); var h = +p[0]; var ap = h>=12 ? "PM" : "AM"; h = h%12; if(h===0) h=12;
+return h + ":" + p[1] + " " + ap;
+}
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+function showTab(name, btn){
+document.querySelectorAll(".tab").forEach(function(t){ t.classList.remove("active"); });
+document.getElementById("tab-"+name).classList.add("active");
+document.querySelectorAll(".tabbar button").forEach(function(b){ b.classList.remove("active"); });
+if(btn) btn.classList.add("active");
+window.scrollTo(0,0);
+}
+
+function sortedCalls(){
+return state.calls.slice().sort(function(a,b){ return (a.date+a.time).localeCompare(b.date+b.time); });
+}
+function statusPill(s){
+if(s==="done") return "<span class='pill green'>Done</span>";
+if(s==="in progress") return "<span class='pill blue'>In Progress</span>";
+return "<span class='pill'>Scheduled</span>";
+}
+function renderCalls(){
+var list = sortedCalls();
+var html = "";
+if(!list.length) html = "<p class='small'>No repair calls yet. Add your first one below.</p>";
+list.forEach(function(c){
+html += "<div class='item" + (c.status==="done"?" done":"") + "'><div class='body'>"
++ "<div class='title'>" + esc(c.customer) + statusPill(c.status) + "</div>"
++ "<div class='meta'><b>" + fmtDate(c.date) + "</b> at " + fmtTime(c.time) + "</div>"
++ (c.appliance ? "<div class='meta'>" + esc(c.appliance) + (c.brand ? " — " + esc(c.brand) : "") + "</div>" : "")
++ (c.problem ? "<div class='meta'>" + esc(c.problem) + "</div>" : "")
++ (c.address ? "<div class='meta'>" + esc(c.address) + "</div>" : "")
++ (c.phone ? "<div class='meta'>&#9742; <a href='tel:" + esc(c.phone.replace(/[^0-9+]/g,"")) + "'>" + esc(c.phone) + "</a></div>" : "")
++ (c.notes ? "<div class='meta'>" + esc(c.notes) + "</div>" : "")
++ "</div><div>"
++ (c.status==="scheduled" ? "<button class='btn btn-small btn-blue' onclick=\"setCallStatus('" + c.id + "','in progress')\">Start</button> " : "")
++ (c.status!=="done" ? "<button class='btn btn-small btn-ghost' onclick=\"setCallStatus('" + c.id + "','done')\">Done</button> " : "<button class='btn btn-small btn-ghost' onclick=\"setCallStatus('" + c.id + "','scheduled')\">Reopen</button> ")
++ "<button class='btn btn-small btn-ghost' onclick=\"delCall('" + c.id + "')\">Delete</button>"
++ "</div></div>";
+});
+document.getElementById("callList").innerHTML = html;
+var dl = document.getElementById("customerNames");
+var names = [];
+state.calls.forEach(function(c){ if(c.customer && names.indexOf(c.customer)===-1) names.push(c.customer); });
+dl.innerHTML = names.map(function(n){ return "<option value='" + esc(n) + "'>"; }).join("");
+}
+function addCall(){
+var customer = document.getElementById("callCustomer").value.trim();
+var date = document.getElementById("callDate").value;
+var time = document.getElementById("callTime").value || "09:00";
+if(!customer || !date){ alert("Add a customer name and a date for the call."); return; }
+state.calls.push({id:uid(), customer:customer,
+phone:document.getElementById("callPhone").value.trim(),
+date:date, time:time,
+address:document.getElementById("callAddress").value.trim(),
+appliance:document.getElementById("callAppliance").value,
+brand:document.getElementById("callBrand").value.trim(),
+problem:document.getElementById("callProblem").value.trim(),
+notes:document.getElementById("callNotes").value.trim(), status:"scheduled"});
+save();
+["callCustomer","callPhone","callAddress","callBrand","callProblem","callNotes"].forEach(function(i){ document.getElementById(i).value=""; });
+document.getElementById("callAppliance").value="";
+renderCalls(); renderCustomers(); renderCallSelects();
+}
+function setCallStatus(id, s){ var c = state.calls.find(function(x){ return x.id===id; }); if(c){ c.status=s; save(); renderCalls(); } }
+function delCall(id){ if(!confirm("Delete this repair call?")) return; state.calls = state.calls.filter(function(x){ return x.id!==id; }); delete state.intake[id]; delete state.checks[id]; save(); renderCalls(); renderCustomers(); renderCallSelects(); }
+
+function renderCustomers(){
+var seen = {};
+var html = "";
+state.calls.forEach(function(c){
+if(!c.customer || seen[c.customer]) return;
+seen[c.customer] = c.phone || "";
+});
+var names = Object.keys(seen);
+if(!names.length) html = "<p class='small'>No customers yet — they show up here once you add a repair call.</p>";
+names.forEach(function(n){
+var ph = seen[n];
+html += "<div class='item'><div class='body'><div class='title'>" + esc(n) + "</div>"
++ (ph ? "<div class='meta'>&#9742; <a href='tel:" + esc(ph.replace(/[^0-9+]/g,"")) + "'>" + esc(ph) + "</a></div>" : "")
++ "</div></div>";
+});
+document.getElementById("customerList").innerHTML = html;
+}
+
+function loadRates(){
+document.getElementById("rateService").value = state.rates.service || "";
+document.getElementById("rateLabor").value = state.rates.labor || "";
+if(!document.getElementById("invService").value && state.rates.service) document.getElementById("invService").value = state.rates.service;
+if(!document.getElementById("invRate").value && state.rates.labor) document.getElementById("invRate").value = state.rates.labor;
+}
+function saveRates(){
+state.rates.service = document.getElementById("rateService").value;
+state.rates.labor = document.getElementById("rateLabor").value;
+save();
+if(!document.getElementById("invService").value && state.rates.service) document.getElementById("invService").value = state.rates.service;
+if(!document.getElementById("invRate").value && state.rates.labor) document.getElementById("invRate").value = state.rates.labor;
+alert("Rates saved.");
+previewInvoice();
+}
+
+function calcInvoice(){
+var service = parseFloat(document.getElementById("invService").value) || 0;
+var hours = parseFloat(document.getElementById("invHours").value) || 0;
+var rate = parseFloat(document.getElementById("invRate").value) || 0;
+var parts = parseFloat(document.getElementById("invParts").value) || 0;
+var paid = parseFloat(document.getElementById("invPaid").value) || 0;
+var labor = hours * rate;
+var total = service + labor + parts;
+return {service:service, hours:hours, rate:rate, labor:labor, parts:parts, total:total, paid:paid, balance:total-paid};
+}
+function previewInvoice(){
+var c = calcInvoice();
+var el = document.getElementById("invPreview");
+if(!c.service && !c.labor && !c.parts){ el.innerHTML = "<p class='small'>Enter a service fee, labor or parts to see the total.</p>"; return; }
+el.innerHTML = "<div class='money'><span>Service call fee</span><span>" + money(c.service) + "</span></div>"
++ "<div class='money'><span>Labor (" + c.hours + " hrs &times; " + money(c.rate) + ")</span><span>" + money(c.labor) + "</span></div>"
++ "<div class='money'><span>Parts</span><span>" + money(c.parts) + "</span></div>"
++ "<div class='money total'><span>Total</span><span>" + money(c.total) + "</span></div>"
++ "<div class='money'><span>Amount paid</span><span>" + money(c.paid) + "</span></div>"
++ "<div class='money total'><span>Balance due</span><span>" + money(c.balance) + "</span></div>";
+}
+function saveInvoice(){
+var customer = document.getElementById("invCustomer").value.trim();
+var date = document.getElementById("invDate").value;
+var c = calcInvoice();
+if(!customer || !date || !c.total){ alert("Add a customer, a date, and at least one charge."); return; }
+state.invoices.push({id:uid(), customer:customer, date:date,
+service:c.service, hours:c.hours, rate:c.rate, labor:c.labor, parts:c.parts,
+total:c.total, paid:c.paid, balance:c.balance,
+work:document.getElementById("invWork").value.trim()});
+save();
+["invCustomer","invService","invHours","invParts","invWork","invPaid"].forEach(function(i){ document.getElementById(i).value=""; });
+document.getElementById("invRate").value = state.rates.labor || "";
+if(state.rates.service) document.getElementById("invService").value = state.rates.service;
+renderInvoices(); previewInvoice();
+}
+function renderInvoices(){
+var html = "";
+if(!state.invoices.length) html = "<p class='small'>No invoices saved yet.</p>";
+state.invoices.slice().reverse().forEach(function(v){
+html += "<div class='item'><div class='body'>"
++ "<div class='title'>" + esc(v.customer) + " — " + money(v.total) + "</div>"
++ "<div class='meta'>" + fmtDate(v.date) + "</div>"
++ (v.work ? "<div class='meta'>" + esc(v.work) + "</div>" : "")
++ "<div class='meta'>Paid " + money(v.paid) + " &bull; Balance due " + money(v.balance) + "</div>"
++ "</div><button class='btn btn-small btn-ghost' onclick=\"delInvoice('" + v.id + "')\">Delete</button></div>";
+});
+document.getElementById("invoiceList").innerHTML = html;
+}
+function delInvoice(id){ if(!confirm("Delete this saved invoice?")) return; state.invoices = state.invoices.filter(function(x){ return x.id!==id; }); save(); renderInvoices(); }
+
+function exportData(){
+var blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
+var a = document.createElement("a");
+a.href = URL.createObjectURL(blob);
+a.download = "coles-office-backup.json";
+a.click();
+setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+}
+
+function renderSuppliers(){
+var q = (document.getElementById("supSearch").value||"").toLowerCase();
+var list = SUPPLIERS.filter(function(s){ return !q || s.n.toLowerCase().indexOf(q)>-1 || s.p.toLowerCase().indexOf(q)>-1 || s.w.toLowerCase().indexOf(q)>-1; });
+var html = "<p class='small'>" + list.length + " suppliers</p>";
+list.forEach(function(s){
+html += "<div class='item'><div class='body'><div class='title'>" + esc(s.n) + "</div><div class='meta'>" + esc(s.p) + "</div><div class='meta'><a href='https://" + esc(s.w) + "' target='_blank' rel='noopener'>" + esc(s.w) + "</a></div></div></div>";
+});
+document.getElementById("supList").innerHTML = html;
+}
+
+function renderParts(){
+var html = "";
+if(!state.parts.length) html = "<p class='small'>No parts on order. Add one below when a job needs a part.</p>";
+state.parts.forEach(function(p){
+var pill = p.status==="Received" ? "<span class='pill green'>Received</span>" : (p.status==="Ordered" ? "<span class='pill blue'>Ordered</span>" : "<span class='pill'>Needed</span>");
+var next = p.status==="Needed" ? "Ordered" : (p.status==="Ordered" ? "Received" : null);
+html += "<div class='item'><div class='body'><div class='title'>" + esc(p.name) + " " + pill + "</div>"
++ (p.model ? "<div class='meta'>" + esc(p.model) + "</div>" : "")
++ (p.supplier ? "<div class='meta'>Supplier: <b>" + esc(p.supplier) + "</b></div>" : "")
++ "</div><div>"
++ (next ? "<button class='btn btn-small btn-blue' onclick=\"setPartStatus('" + p.id + "','" + next + "')\">" + next + "</button> " : "")
++ "<button class='btn btn-small btn-ghost' onclick=\"delPart('" + p.id + "')\">Delete</button>"
++ "</div></div>";
+});
+document.getElementById("partList").innerHTML = html;
+}
+function addPart(){
+var name = document.getElementById("partName").value.trim();
+if(!name){ alert("Add the part name."); return; }
+state.parts.push({id:uid(), name:name,
+model:document.getElementById("partModel").value.trim(),
+supplier:document.getElementById("partSupplier").value,
+status:"Needed"});
+save();
+["partName","partModel"].forEach(function(i){ document.getElementById(i).value=""; });
+document.getElementById("partSupplier").value="";
+renderParts();
+}
+function setPartStatus(id, s){ var p = state.parts.find(function(x){ return x.id===id; }); if(p){ p.status=s; save(); renderParts(); } }
+function delPart(id){ if(!confirm("Delete this part?")) return; state.parts = state.parts.filter(function(x){ return x.id!==id; }); save(); renderParts(); }
+
+function renderCallSelects(){
+var opts = "<option value='general'>General (no call picked)</option>";
+sortedCalls().forEach(function(c){
+opts += "<option value='" + c.id + "'>" + esc(fmtDate(c.date) + " — " + c.customer) + "</option>";
+});
+["intakeCall","checkCall"].forEach(function(id){
+var sel = document.getElementById(id);
+var cur = sel.value;
+sel.innerHTML = opts;
+if(cur) sel.value = cur;
+});
+}
+var INTAKE_FIELDS = ["inCustomer","inPhone","inDate","inAddress","inAppliance","inBrand","inModel","inSerial","inProblem","inWarranty","inAccess","inPhotos","inNotes"];
+function loadIntake(){
+var id = document.getElementById("intakeCall").value;
+var f = state.intake[id] || {};
+if(id && id!=="general"){
+var c = state.calls.find(function(x){ return x.id===id; });
+if(c){
+if(!f.inCustomer) f.inCustomer = c.customer || "";
+if(!f.inPhone) f.inPhone = c.phone || "";
+if(!f.inDate) f.inDate = c.date || "";
+if(!f.inAddress) f.inAddress = c.address || "";
+if(!f.inAppliance) f.inAppliance = c.appliance || "";
+if(!f.inBrand) f.inBrand = c.brand || "";
+if(!f.inProblem) f.inProblem = c.problem || "";
+}
+}
+INTAKE_FIELDS.forEach(function(k){ var el = document.getElementById(k); if(el) el.value = f[k] || ""; });
+}
+function saveIntake(){
+var id = document.getElementById("intakeCall").value;
+if(!id){ alert("Pick a call first, then fill in the intake form."); return; }
+var f = {};
+INTAKE_FIELDS.forEach(function(k){ f[k] = document.getElementById(k).value; });
+state.intake[id] = f;
+save();
+alert("Intake form saved for this call.");
+}
+
+function checkKey(){ return document.getElementById("checkCall").value || "general"; }
+function renderChecklist(){
+var key = checkKey();
+var saved = state.checks[key] || {};
+var html = "";
+JOB_CHECKS.forEach(function(t, i){
+var k = "j" + i;
+var on = saved[k] ? "checked" : "";
+html += "<label class='check'><input type='checkbox' " + on + " onchange=\"toggleCheck('" + key + "','" + k + "',this.checked)\"><span>" + esc(t) + "</span></label>";
+});
+document.getElementById("checklistBody").innerHTML = html;
+}
+function toggleCheck(key, k, on){
+if(!state.checks[key]) state.checks[key] = {};
+state.checks[key][k] = on;
+save();
+}
+function clearChecklist(){
+if(!confirm("Uncheck everything on this checklist for this call?")) return;
+delete state.checks[checkKey()];
+save(); renderChecklist();
+}
+
+["invService","invHours","invRate","invParts","invPaid"].forEach(function(id){
+document.getElementById(id).addEventListener("input", previewInvoice);
+});
+renderCalls();
+renderCustomers();
+loadRates();
+renderInvoices();
+renderSuppliers();
+renderParts();
+renderCallSelects();
+loadIntake();
+renderChecklist();
+previewInvoice();
+</script>
+</body>
+</html>
